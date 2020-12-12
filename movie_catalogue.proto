@@ -6,7 +6,7 @@ option go_package = ".;grpc_demo";
 message CastMember {
   string character = 1;
   string firstName = 2;
-  string surName = 3;
+  string lastName = 3;
 } 
 
 message Movie {
