@@ -1,0 +1,23 @@
+syntax = 'proto3';
+package grpc_demo;
+
+option go_package = ".;grpc_demo";
+
+message CastMember {
+  string firstName = 1;
+  string surName = 2;
+  string character = 4;
+} 
+
+message Movie {
+  string title = 1;
+  string description = 2;
+  int32 productionYear = 4;
+  repeated CastMember castMembers = 5;
+  string genre = 6;
+  int32 duration = 7;
+}
+
+message MovieCatalogue {
+  repeated Movie movies = 1;
+}
