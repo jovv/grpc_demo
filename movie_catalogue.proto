@@ -4,18 +4,18 @@ package grpc_demo;
 option go_package = ".;grpc_demo";
 
 message CastMember {
-  string firstName = 1;
-  string surName = 2;
-  string character = 4;
+  string character = 1;
+  string firstName = 2;
+  string surName = 3;
 } 
 
 message Movie {
   string title = 1;
   string description = 2;
-  int32 productionYear = 4;
-  repeated CastMember castMembers = 5;
-  string genre = 6;
-  int32 duration = 7;
+  int32 productionYear = 3;
+  string genre = 4;
+  int32 duration = 5;
+  repeated CastMember castMembers = 6;
 }
 
 message MovieCatalogue {
