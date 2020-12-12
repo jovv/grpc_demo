@@ -1,59 +1,57 @@
 #! /usr/bin/env python
+"""Add a Movie based on user input"""
 
-import movies_pb2
 import sys
+import movie_catalogue_pb2
 
-raw_input = input
 
-# This function fills in a Movie message based on user input.
-def PromptForMovie(movie):
-  movie.title= raw_input("Enter title: ")
+def prompt_for_movie(movie):
+    """Fill in a Movie message based on user input"""
 
-  decription = "Enter description (blank for none): ")
-  if description!= "":
-    movie.decription = description
+    movie.title = input("Enter title: ")
 
-  synopsis = "Enter synopsis (blank for none): ")
-  if synopsis!= "":
-    movie.synopsis = synopsis
+    description = input("Enter description (blank for none): ")
+    if description != "":
+        movie.description = description
 
-  while True:
-    number = raw_input("Enter a phone number (or leave blank to finish): ")
-    if number == "":
-      break
+    movie.productionYear = int(input("Enter production year: "))
+    movie.genre = input("Enter genre: ")
 
-    phone_number = person.phones.add()
-    phone_number.number = number
+    while True:
+        print("Enter a cast member:")
 
-    type = raw_input("Is this a mobile, home, or work phone? ")
-    if type == "mobile":
-      phone_number.type = addressbook_pb2.Person.MOBILE
-    elif type == "home":
-      phone_number.type = addressbook_pb2.Person.HOME
-    elif type == "work":
-      phone_number.type = addressbook_pb2.Person.WORK
-    else:
-      print("Unknown phone type; leaving as default value.")
+        character = input("Enter a character or leave blank to finish): ")
+        if character == "":
+            break
 
-# Main procedure:  Reads the entire address book from a file,
-#   adds one person based on user input, then writes it back out to the same
-#   file.
+        cast_member = movie.castMembers.add()
+        cast_member.character = character
+
+        first_name = input("Enter a first name: ")
+        cast_member.firstName = first_name
+
+        last_name = input("Enter a last name: ")
+        cast_member.lastName = last_name
+
+
+#  Read the entire movie catalogue from a file,
+#  add one person based on user input, then write it back out to the same file
 if len(sys.argv) != 2:
-  print("Usage:", sys.argv[0], "ADDRESS_BOOK_FILE")
-  sys.exit(-1)
+    print("Usage:", sys.argv[0], "MOVIE_CATALOGUE_FILE")
+    sys.exit(-1)
 
-address_book = addressbook_pb2.AddressBook()
+movie_catalogue = movie_catalogue_pb2.MovieCatalogue()
 
-# Read the existing address book.
+# Read the existing movie catalogue
 try:
-  with open(sys.argv[1], "rb") as f:
-    address_book.ParseFromString(f.read())
+    with open(sys.argv[1], "rb") as f:
+        movie_catalogue.ParseFromString(f.read())
 except IOError:
-  print(sys.argv[1] + ": File not found.  Creating a new file.")
+    print(sys.argv[1] + ": File not found.  Creating a new file.")
 
-# Add an address.
-PromptForAddress(address_book.people.add())
+# Add a movie
+prompt_for_movie(movie_catalogue.movies.add())
 
-# Write the new address book back to disk.
+# Write the new movie catalogue back to disk
 with open(sys.argv[1], "wb") as f:
-  f.write(address_book.SerializeToString())
+    f.write(movie_catalogue.SerializeToString())
