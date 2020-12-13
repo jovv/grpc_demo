@@ -4,8 +4,6 @@ Demo protobuf and gRPC concepts using a simple movie catalogue.
 
 You can run the **PRESENT** markdown presentation with [patat](https://github.com/jaspervdj/patat).
 
-## Movie Catalogue
-
 Code generated from the protobuf schema in both Python and Go is already provided. Should you wish to do so, you can clean up the generated code with `make clean` or regenerate it with `make schema`.
 
 An interface to add movies is provided in Python (for no particular reason).
