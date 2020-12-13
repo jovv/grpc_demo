@@ -19,8 +19,8 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.8"
-content-hash = "d5a0adec59816260fe8b53fb0a0244c8226933f72c8a9f28499708e864db23fa"
+python-versions = "^3.9"
+content-hash = "922ee7bacdd851fa4cf896dd5d48a434220562245baeccc9e86592751b5d33c8"
 
 [metadata.files]
 protobuf = [
