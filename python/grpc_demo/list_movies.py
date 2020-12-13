@@ -28,7 +28,6 @@ def usage():
 def main():
     """Read the entire movie catalogue from a file and print all the
        information inside"""
-    print(sys.argv)
     if len(sys.argv) != 2:
         usage()
 
