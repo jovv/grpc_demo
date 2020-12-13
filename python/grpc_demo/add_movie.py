@@ -16,21 +16,22 @@ def prompt_for_movie(movie):
 
     movie.productionYear = int(input("Enter production year: "))
     movie.genre = input("Enter genre: ")
+    movie.duration = int(input("Enter duration: "))
 
     while True:
         print("Enter a cast member:")
 
-        character = input("Enter a character or leave blank to finish): ")
+        character = input("\tEnter a character or leave blank to finish): ")
         if character == "":
             break
 
         cast_member = movie.castMembers.add()
         cast_member.character = character
 
-        first_name = input("Enter a first name: ")
+        first_name = input("\tEnter a first name: ")
         cast_member.firstName = first_name
 
-        last_name = input("Enter a last name: ")
+        last_name = input("\tEnter a last name: ")
         cast_member.lastName = last_name
 
 
