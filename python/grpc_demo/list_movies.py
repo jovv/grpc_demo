@@ -9,23 +9,28 @@ def list_movies(movie_catalogue):
     """Iterate through all movies and print info about them"""
     for movie in movie_catalogue.movies:
         print("Title:", movie.title)
-        print("Description:", movie.description)
-        print("Production Year:", movie.productionYear)
-        print("Genre:", movie.genre)
-        print("Duration:", movie.duration)
+        print("\tDescription:", movie.description)
+        print("\tProduction Year:", movie.productionYear)
+        print("\tGenre:", movie.genre)
+        print("\tDuration:", movie.duration)
 
         for cast_member in movie.castMembers:
-            print("Character:", cast_member.character)
-            print("First Name:", cast_member.firstName)
-            print("Last Name:", cast_member.lastName)
+            print("\t\tCharacter:", cast_member.character)
+            print("\t\tFirst Name:", cast_member.firstName)
+            print("\t\tLast Name:", cast_member.lastName)
+
+
+def usage():
+    print("Usage:", sys.argv[0], "MOVIE_CATALOGUE_FILE")
+    sys.exit(-1)
 
 
 def main():
     """Read the entire movie catalogue from a file and print all the
        information inside"""
+    print(sys.argv)
     if len(sys.argv) != 2:
-        print("Usage:", sys.argv[0], "MOVIE_CATALOGUE_FILE")
-        sys.exit(-1)
+        usage()
 
     movie_catalogue = movie_catalogue_pb2.MovieCatalogue()
 
@@ -34,3 +39,7 @@ def main():
         movie_catalogue.ParseFromString(f.read())
 
     list_movies(movie_catalogue)
+
+
+if __name__ == "__main__":
+    main()
