@@ -53,3 +53,6 @@ or for the Go interface, from `./go/grpc_demo` run
 
 For the Go interface, you should build the binary first with `make build` from the repo root. 
 
+## TODO
+
+* figure out a non-trivial and relatable example for rpc services and methods using the movie catalogue messages
