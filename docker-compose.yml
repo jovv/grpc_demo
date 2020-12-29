@@ -13,3 +13,11 @@ services:
       - ./data:/var/lib/postgresql/data
     ports:
       - "35432:5432"
+  rest:
+    build: 
+      context: .
+      dockerfile: Dockerfile.rest
+    depends_on:
+      - db
+    ports: 
+      - "8181:8080"
