@@ -10,7 +10,7 @@ setup:
 
 # build Go code
 build:
-	(cd go/grpc_demo && go build)
+	(cd go/grpc_demo/cmd/movie_server && go build)
 
 ddl:
 	docker exec grpc_demo_postgres_1 psql -h localhost -U demo -d mc -f /scripts/movies_ddl.sql
