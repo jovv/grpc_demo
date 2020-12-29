@@ -3,3 +3,6 @@ __pycache__
 
 # postgres data
 data/*
+
+# binaries 
+go/grpc_demo/cmd/movie_server/movie_server
