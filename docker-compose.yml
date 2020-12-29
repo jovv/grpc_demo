@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  db:
+    image: postgres:11
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_DB=mc
+      - POSTGRES_HOST_AUTH_METHOD=trust # demo purposes only
+    volumes:
+      - ./go/grpc_demo/storage/movies_ddl.sql:/scripts/movies_ddl.sql
+      - ./go/grpc_demo/cmd/sample_data/movies_dml.sql:/scripts/movies_dml.sql
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "35432:5432"
