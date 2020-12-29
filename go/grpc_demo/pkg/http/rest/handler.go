@@ -2,6 +2,7 @@ package rest
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/jovv/grpc_demo/go/grpc_demo/pkg/listing"
@@ -24,7 +25,12 @@ func getMovies(s listing.Service) func(w http.ResponseWriter, r *http.Request, _
 
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		w.Header().Set("Content-Type", "application/json")
-		list := s.GetMovies()
+		list, err := s.GetMovies()
+		if err != nil {
+			log.Println(err)
+			http.Error(w, http.StatusText(500), 500)
+			return
+		}
 		json.NewEncoder(w).Encode(list)
 	}
 

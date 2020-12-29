@@ -4,6 +4,9 @@ import (
 	"database/sql"
 
 	"github.com/jovv/grpc_demo/go/grpc_demo/pkg/listing"
+
+	// postgres driver
+	_ "github.com/lib/pq"
 )
 
 // Storage wraps the sql.DB connection pool
@@ -14,7 +17,8 @@ type Storage struct {
 // NewStorage returns a new sql storage
 func NewStorage() (*Storage, error) {
 
-	db, err := sql.Open("postgres", "demo@db:5432/mc")
+	// TODO: move to some sort of config file, stup in main (read with cleanenv)
+	db, err := sql.Open("postgres", "postgres://demo:demopw@localhost:35432/mc?sslmode=disable")
 	if err != nil {
 		return nil, err
 	}
@@ -59,15 +63,3 @@ func (s *Storage) GetAllMovies() ([]listing.Movie, error) {
 	return list, nil
 
 }
-
-	// Execute the SQL query by calling the All() method.
-	bks, err := s.GetMovies()
-	if err != nil {
-		log.Println(err)
-		http.Error(w, http.StatusText(500), 500)
-		return
-	}
-
-	for _, bk := range bks {
-		fmt.Fprintf(w, "%s, %s, %s, £%.2f\n", bk.Isbn, bk.Title, bk.Author, bk.Price)
-	}
