@@ -1,7 +1,7 @@
 syntax = 'proto3';
 package grpc_demo;
 
-option go_package = "github.com/jovv/grpc_demo/go/grpc_demo/movies";
+option go_package = "github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc";
 
 message CastMember {
   string character = 1;
@@ -18,8 +18,4 @@ message Movie {
   string genre = 5;
   int32 duration = 6;
   repeated CastMember castMembers = 7;
-}
-
-message Repository {
-  repeated Movie movies = 1;
 }
