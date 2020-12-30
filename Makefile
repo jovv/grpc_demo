@@ -1,6 +1,9 @@
 # generate code for interoperability with binary format using the protocol buffer compiler 
 schema:
-	protoc --go_opt=module=github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc --go_out=go/grpc_demo/pkg/http/grpc movie_catalogue.proto
+	protoc --go_opt=module=github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc \
+		   --go_out=go/grpc_demo/pkg/http/grpc \
+		   --go-grpc_out=go/grpc_demo/pkg/http/grpc \
+		   movie_catalogue.proto
 	protoc --python_out=python/grpc_demo/ movie_catalogue.proto
 
 # setup Python code with Poetry project (https://python-poetry.org/docs/)
