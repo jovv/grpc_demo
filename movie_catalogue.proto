@@ -1,7 +1,8 @@
 syntax = 'proto3';
-package grpc_demo;
 
 option go_package = "github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc";
+
+package grpc;
 
 message CastMember {
   string character = 1;
@@ -18,4 +19,25 @@ message Movie {
   string genre = 5;
   int32 duration = 6;
   repeated CastMember castMembers = 7;
+}
+
+service MovieService {
+  rpc Movie (MovieRequest) returns (MovieReply) {}
+  rpc Movies (MoviesRequest) returns (MoviesReply) {}
+}
+
+message MovieRequest {
+  int32 id = 1;
+}
+
+message MovieReply {
+  Movie movie = 1;
+}
+
+// if a service method needs no input parameters, protobuf requires an empty 
+// message to guarantee future compatibility
+message MoviesRequest {}
+
+message MoviesReply {
+  repeated Movie movies = 1;
 }
