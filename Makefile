@@ -1,8 +1,11 @@
 # generate code for interoperability with binary format using the protocol buffer compiler 
+GO_GRPC_PKG = github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc
+GO_GRPC_PATH = go/grpc_demo/pkg/http/grpc
 schema:
-	protoc --go_opt=module=github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc \
-		   --go_out=go/grpc_demo/pkg/http/grpc \
-		   --go-grpc_out=go/grpc_demo/pkg/http/grpc \
+	protoc --go_opt=module=${GO_GRPC_PKG} \
+		   --go_out=${GO_GRPC_PATH} \
+		   --go-grpc_opt=module=${GO_GRPC_PKG} \
+		   --go-grpc_out=${GO_GRPC_PATH} \
 		   movie_catalogue.proto
 	protoc --python_out=python/grpc_demo/ movie_catalogue.proto
 
@@ -24,5 +27,3 @@ dml:
 # cleanup generated code of protobuf compiler
 clean:
 	rm -f ./python/grpc_demo/*_pb2.py ./go/grpc_demo/movies/*.pb.go
-
-
