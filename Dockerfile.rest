@@ -1,6 +1,6 @@
 FROM scratch
 
-COPY ./go/grpc_demo/cmd/movie_server/movie_server /
+COPY ./go/grpc_demo/cmd/rest/movie_server/movie_server /
 
 EXPOSE 8080
 
