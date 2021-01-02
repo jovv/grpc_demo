@@ -21,3 +21,11 @@ services:
       - db
     ports: 
       - "8181:8080"
+  rpc:
+    build:
+      context: .
+      dockerfile: Dockerfile.grpc
+    depends_on: 
+      - db
+    ports:
+      - "50051:50051" 

@@ -1,0 +1,7 @@
+FROM scratch
+
+COPY ./go/grpc_demo/cmd/grpc/movie_server/movie_server /
+
+EXPOSE 50051
+
+ENTRYPOINT [ "/movie_server" ]
