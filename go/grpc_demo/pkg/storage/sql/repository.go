@@ -18,7 +18,7 @@ type Storage struct {
 // NewStorage returns a new sql storage
 func NewStorage() (*Storage, error) {
 
-	// TODO: move to some sort of config file, stup in main (read with cleanenv)
+	// TODO: move to some sort of config file, setup in main (read with cleanenv)
 	db, err := sql.Open("postgres", "postgres://demo:demopw@db:5432/mc?sslmode=disable")
 	if err != nil {
 		return nil, err
