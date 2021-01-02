@@ -5,4 +5,4 @@ __pycache__
 data/*
 
 # binaries 
-go/grpc_demo/cmd/movie_server/movie_server
+go/grpc_demo/cmd/*/movie_server/movie_server
