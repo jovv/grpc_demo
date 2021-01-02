@@ -13,119 +13,85 @@ import (
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion7
 
-// MovieServiceClient is the client API for MovieService service.
+// MovieCatalogueClient is the client API for MovieCatalogue service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MovieServiceClient interface {
-	Movie(ctx context.Context, in *MovieRequest, opts ...grpc.CallOption) (*MovieReply, error)
-	Movies(ctx context.Context, in *MoviesRequest, opts ...grpc.CallOption) (*MoviesReply, error)
+type MovieCatalogueClient interface {
+	//rpc GetMovie (MovieRequest) returns (MovieReply) {}
+	GetMovies(ctx context.Context, in *MoviesRequest, opts ...grpc.CallOption) (*MoviesReply, error)
 }
 
-type movieServiceClient struct {
+type movieCatalogueClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMovieServiceClient(cc grpc.ClientConnInterface) MovieServiceClient {
-	return &movieServiceClient{cc}
+func NewMovieCatalogueClient(cc grpc.ClientConnInterface) MovieCatalogueClient {
+	return &movieCatalogueClient{cc}
 }
 
-func (c *movieServiceClient) Movie(ctx context.Context, in *MovieRequest, opts ...grpc.CallOption) (*MovieReply, error) {
-	out := new(MovieReply)
-	err := c.cc.Invoke(ctx, "/grpc.MovieService/Movie", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *movieServiceClient) Movies(ctx context.Context, in *MoviesRequest, opts ...grpc.CallOption) (*MoviesReply, error) {
+func (c *movieCatalogueClient) GetMovies(ctx context.Context, in *MoviesRequest, opts ...grpc.CallOption) (*MoviesReply, error) {
 	out := new(MoviesReply)
-	err := c.cc.Invoke(ctx, "/grpc.MovieService/Movies", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc.MovieCatalogue/GetMovies", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MovieServiceServer is the server API for MovieService service.
-// All implementations must embed UnimplementedMovieServiceServer
+// MovieCatalogueServer is the server API for MovieCatalogue service.
+// All implementations must embed UnimplementedMovieCatalogueServer
 // for forward compatibility
-type MovieServiceServer interface {
-	Movie(context.Context, *MovieRequest) (*MovieReply, error)
-	Movies(context.Context, *MoviesRequest) (*MoviesReply, error)
-	mustEmbedUnimplementedMovieServiceServer()
+type MovieCatalogueServer interface {
+	//rpc GetMovie (MovieRequest) returns (MovieReply) {}
+	GetMovies(context.Context, *MoviesRequest) (*MoviesReply, error)
+	mustEmbedUnimplementedMovieCatalogueServer()
 }
 
-// UnimplementedMovieServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedMovieServiceServer struct {
+// UnimplementedMovieCatalogueServer must be embedded to have forward compatible implementations.
+type UnimplementedMovieCatalogueServer struct {
 }
 
-func (UnimplementedMovieServiceServer) Movie(context.Context, *MovieRequest) (*MovieReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Movie not implemented")
+func (UnimplementedMovieCatalogueServer) GetMovies(context.Context, *MoviesRequest) (*MoviesReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovies not implemented")
 }
-func (UnimplementedMovieServiceServer) Movies(context.Context, *MoviesRequest) (*MoviesReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Movies not implemented")
-}
-func (UnimplementedMovieServiceServer) mustEmbedUnimplementedMovieServiceServer() {}
+func (UnimplementedMovieCatalogueServer) mustEmbedUnimplementedMovieCatalogueServer() {}
 
-// UnsafeMovieServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MovieServiceServer will
+// UnsafeMovieCatalogueServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MovieCatalogueServer will
 // result in compilation errors.
-type UnsafeMovieServiceServer interface {
-	mustEmbedUnimplementedMovieServiceServer()
+type UnsafeMovieCatalogueServer interface {
+	mustEmbedUnimplementedMovieCatalogueServer()
 }
 
-func RegisterMovieServiceServer(s grpc.ServiceRegistrar, srv MovieServiceServer) {
-	s.RegisterService(&_MovieService_serviceDesc, srv)
+func RegisterMovieCatalogueServer(s grpc.ServiceRegistrar, srv MovieCatalogueServer) {
+	s.RegisterService(&_MovieCatalogue_serviceDesc, srv)
 }
 
-func _MovieService_Movie_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MovieRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MovieServiceServer).Movie(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/grpc.MovieService/Movie",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MovieServiceServer).Movie(ctx, req.(*MovieRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MovieService_Movies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MovieCatalogue_GetMovies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MoviesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MovieServiceServer).Movies(ctx, in)
+		return srv.(MovieCatalogueServer).GetMovies(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc.MovieService/Movies",
+		FullMethod: "/grpc.MovieCatalogue/GetMovies",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MovieServiceServer).Movies(ctx, req.(*MoviesRequest))
+		return srv.(MovieCatalogueServer).GetMovies(ctx, req.(*MoviesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _MovieService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc.MovieService",
-	HandlerType: (*MovieServiceServer)(nil),
+var _MovieCatalogue_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "grpc.MovieCatalogue",
+	HandlerType: (*MovieCatalogueServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Movie",
-			Handler:    _MovieService_Movie_Handler,
-		},
-		{
-			MethodName: "Movies",
-			Handler:    _MovieService_Movies_Handler,
+			MethodName: "GetMovies",
+			Handler:    _MovieCatalogue_GetMovies_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

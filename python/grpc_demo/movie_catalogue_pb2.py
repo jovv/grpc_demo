@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z4github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x15movie_catalogue.proto\x12\x04grpc\"V\n\nCastMember\x12\x11\n\tcharacter\x18\x01 \x01(\t\x12\x11\n\tfirstName\x18\x02 \x01(\t\x12\x10\n\x08lastName\x18\x03 \x01(\t\x12\x10\n\x08movie_id\x18\x04 \x01(\x05\"\x97\x01\n\x05Movie\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x16\n\x0eproductionYear\x18\x04 \x01(\x05\x12\r\n\x05genre\x18\x05 \x01(\t\x12\x10\n\x08\x64uration\x18\x06 \x01(\x05\x12%\n\x0b\x63\x61stMembers\x18\x07 \x03(\x0b\x32\x10.grpc.CastMember\"\x1a\n\x0cMovieRequest\x12\n\n\x02id\x18\x01 \x01(\x05\"(\n\nMovieReply\x12\x1a\n\x05movie\x18\x01 \x01(\x0b\x32\x0b.grpc.Movie\"\x0f\n\rMoviesRequest\"*\n\x0bMoviesReply\x12\x1b\n\x06movies\x18\x01 \x03(\x0b\x32\x0b.grpc.Movie2s\n\x0cMovieService\x12/\n\x05Movie\x12\x12.grpc.MovieRequest\x1a\x10.grpc.MovieReply\"\x00\x12\x32\n\x06Movies\x12\x13.grpc.MoviesRequest\x1a\x11.grpc.MoviesReply\"\x00\x42\x36Z4github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpcb\x06proto3'
+  serialized_pb=b'\n\x15movie_catalogue.proto\x12\x04grpc\"U\n\nCastMember\x12\x11\n\tCharacter\x18\x01 \x01(\t\x12\x11\n\tGirstName\x18\x02 \x01(\t\x12\x10\n\x08LastName\x18\x03 \x01(\t\x12\x0f\n\x07MovieID\x18\x04 \x01(\x05\"\x97\x01\n\x05Movie\x12\n\n\x02ID\x18\x01 \x01(\x05\x12\r\n\x05Title\x18\x02 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x03 \x01(\t\x12\x16\n\x0eProductionYear\x18\x04 \x01(\x05\x12\r\n\x05Genre\x18\x05 \x01(\t\x12\x10\n\x08\x44uration\x18\x06 \x01(\x05\x12%\n\x0b\x43\x61stMembers\x18\x07 \x03(\x0b\x32\x10.grpc.CastMember\"\x1a\n\x0cMovieRequest\x12\n\n\x02id\x18\x01 \x01(\x05\"(\n\nMovieReply\x12\x1a\n\x05movie\x18\x01 \x01(\x0b\x32\x0b.grpc.Movie\"\x0f\n\rMoviesRequest\"*\n\x0bMoviesReply\x12\x1b\n\x06movies\x18\x01 \x03(\x0b\x32\x0b.grpc.Movie2G\n\x0eMovieCatalogue\x12\x35\n\tGetMovies\x12\x13.grpc.MoviesRequest\x1a\x11.grpc.MoviesReply\"\x00\x42\x36Z4github.com/jovv/grpc_demo/go/grpc_demo/pkg/http/grpcb\x06proto3'
 )
 
 
@@ -34,28 +34,28 @@ _CASTMEMBER = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='character', full_name='grpc.CastMember.character', index=0,
+      name='Character', full_name='grpc.CastMember.Character', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='firstName', full_name='grpc.CastMember.firstName', index=1,
+      name='GirstName', full_name='grpc.CastMember.GirstName', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='lastName', full_name='grpc.CastMember.lastName', index=2,
+      name='LastName', full_name='grpc.CastMember.LastName', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='movie_id', full_name='grpc.CastMember.movie_id', index=3,
+      name='MovieID', full_name='grpc.CastMember.MovieID', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -74,7 +74,7 @@ _CASTMEMBER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=31,
-  serialized_end=117,
+  serialized_end=116,
 )
 
 
@@ -87,49 +87,49 @@ _MOVIE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='grpc.Movie.id', index=0,
+      name='ID', full_name='grpc.Movie.ID', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='title', full_name='grpc.Movie.title', index=1,
+      name='Title', full_name='grpc.Movie.Title', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='description', full_name='grpc.Movie.description', index=2,
+      name='Description', full_name='grpc.Movie.Description', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='productionYear', full_name='grpc.Movie.productionYear', index=3,
+      name='ProductionYear', full_name='grpc.Movie.ProductionYear', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='genre', full_name='grpc.Movie.genre', index=4,
+      name='Genre', full_name='grpc.Movie.Genre', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='duration', full_name='grpc.Movie.duration', index=5,
+      name='Duration', full_name='grpc.Movie.Duration', index=5,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='castMembers', full_name='grpc.Movie.castMembers', index=6,
+      name='CastMembers', full_name='grpc.Movie.CastMembers', index=6,
       number=7, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -147,8 +147,8 @@ _MOVIE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=120,
-  serialized_end=271,
+  serialized_start=119,
+  serialized_end=270,
 )
 
 
@@ -179,8 +179,8 @@ _MOVIEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=273,
-  serialized_end=299,
+  serialized_start=272,
+  serialized_end=298,
 )
 
 
@@ -211,8 +211,8 @@ _MOVIEREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=301,
-  serialized_end=341,
+  serialized_start=300,
+  serialized_end=340,
 )
 
 
@@ -236,8 +236,8 @@ _MOVIESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=343,
-  serialized_end=358,
+  serialized_start=342,
+  serialized_end=357,
 )
 
 
@@ -268,11 +268,11 @@ _MOVIESREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=360,
-  serialized_end=402,
+  serialized_start=359,
+  serialized_end=401,
 )
 
-_MOVIE.fields_by_name['castMembers'].message_type = _CASTMEMBER
+_MOVIE.fields_by_name['CastMembers'].message_type = _CASTMEMBER
 _MOVIEREPLY.fields_by_name['movie'].message_type = _MOVIE
 _MOVIESREPLY.fields_by_name['movies'].message_type = _MOVIE
 DESCRIPTOR.message_types_by_name['CastMember'] = _CASTMEMBER
@@ -328,30 +328,20 @@ _sym_db.RegisterMessage(MoviesReply)
 
 DESCRIPTOR._options = None
 
-_MOVIESERVICE = _descriptor.ServiceDescriptor(
-  name='MovieService',
-  full_name='grpc.MovieService',
+_MOVIECATALOGUE = _descriptor.ServiceDescriptor(
+  name='MovieCatalogue',
+  full_name='grpc.MovieCatalogue',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=404,
-  serialized_end=519,
+  serialized_start=403,
+  serialized_end=474,
   methods=[
   _descriptor.MethodDescriptor(
-    name='Movie',
-    full_name='grpc.MovieService.Movie',
+    name='GetMovies',
+    full_name='grpc.MovieCatalogue.GetMovies',
     index=0,
-    containing_service=None,
-    input_type=_MOVIEREQUEST,
-    output_type=_MOVIEREPLY,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Movies',
-    full_name='grpc.MovieService.Movies',
-    index=1,
     containing_service=None,
     input_type=_MOVIESREQUEST,
     output_type=_MOVIESREPLY,
@@ -359,8 +349,8 @@ _MOVIESERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_MOVIESERVICE)
+_sym_db.RegisterServiceDescriptor(_MOVIECATALOGUE)
 
-DESCRIPTOR.services_by_name['MovieService'] = _MOVIESERVICE
+DESCRIPTOR.services_by_name['MovieCatalogue'] = _MOVIECATALOGUE
 
 # @@protoc_insertion_point(module_scope)
