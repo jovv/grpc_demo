@@ -31,8 +31,8 @@ func moviesAdapter(ms []listing.Movie) []*Movie {
 	return movies
 }
 
-// GetMovies returns an RPC MoviesReply with a list of all movies
-func (mc *Handler) GetMovies(context.Context, *MoviesRequest) (*MoviesReply, error) {
+// getMovies returns an RPC MoviesReply with a list of all movies
+func (mc *Handler) getMovies(context.Context, *MoviesRequest) (*MoviesReply, error) {
 	l, err := mc.Lister.GetMovies()
 	if err != nil {
 		return nil, err
@@ -40,5 +40,17 @@ func (mc *Handler) GetMovies(context.Context, *MoviesRequest) (*MoviesReply, err
 
 	return &MoviesReply{
 		Movies: moviesAdapter(l),
+	}, nil
+}
+
+// getMovie returns an RPC MovieReply with a movie for a specified ID
+func (mc *Handler) getMovie(c context.Context, mr *MovieRequest) (*MovieReply, error) {
+	m, err := mc.Lister.GetMovie(int(mr.ID))
+	if err != nil {
+		return nil, err
+	}
+
+	return &MovieReply{
+		Movie: movieAdapter(m),
 	}, nil
 }
