@@ -8,7 +8,7 @@ var ErrNotFound = errors.New("movie not found")
 // Repository provides access to the movie and castmembers storage
 type Repository interface {
 	// GetMovie returns the movie with specified ID
-	GetMovie(int) (Movie, error)
+	GetMovie(ID int) (Movie, error)
 	// GetAllMovies returns all movies saved in storage
 	GetAllMovies() ([]Movie, error)
 }
@@ -34,6 +34,6 @@ func (svc *service) GetMovies() ([]Movie, error) {
 }
 
 // GetMovie returns the movie with the specified ID
-func (svc *service) GetMovie(id int) (Movie, error) {
-	return svc.r.GetMovie(id)
+func (svc *service) GetMovie(ID int) (Movie, error) {
+	return svc.r.GetMovie(ID)
 }
