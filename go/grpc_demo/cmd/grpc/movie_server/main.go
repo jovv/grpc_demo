@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
 
@@ -35,6 +36,7 @@ func main() {
 	// register reflection service on gRPC server, so we can list available
 	// services etc
 	reflection.Register(srv)
+	fmt.Println("Producing movies at: http://localhost:50051")
 	if err := srv.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
