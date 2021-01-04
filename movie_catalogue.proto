@@ -6,7 +6,7 @@ package grpc;
 
 message CastMember {
   string Character = 1;
-  string GirstName = 2;
+  string FirstName = 2;
   string LastName = 3;
   int32 MovieID = 4;  
 } 
@@ -22,16 +22,16 @@ message Movie {
 }
 
 service MovieCatalogue {
-  //rpc GetMovie (MovieRequest) returns (MovieReply) {}
+  rpc GetMovie (MovieRequest) returns (MovieReply) {}
   rpc GetMovies (MoviesRequest) returns (MoviesReply) {}
 }
 
 message MovieRequest {
-  int32 id = 1;
+  int32 ID = 1;
 }
 
 message MovieReply {
-  Movie movie = 1;
+  Movie Movie = 1;
 }
 
 // if a service method needs no input parameters, protobuf requires an empty 
@@ -39,5 +39,5 @@ message MovieReply {
 message MoviesRequest {}
 
 message MoviesReply {
-  repeated Movie movies = 1;
+  repeated Movie Movies = 1;
 }

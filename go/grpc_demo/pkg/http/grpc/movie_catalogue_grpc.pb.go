@@ -17,7 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MovieCatalogueClient interface {
-	//rpc GetMovie (MovieRequest) returns (MovieReply) {}
+	GetMovie(ctx context.Context, in *MovieRequest, opts ...grpc.CallOption) (*MovieReply, error)
 	GetMovies(ctx context.Context, in *MoviesRequest, opts ...grpc.CallOption) (*MoviesReply, error)
 }
 
@@ -27,6 +27,15 @@ type movieCatalogueClient struct {
 
 func NewMovieCatalogueClient(cc grpc.ClientConnInterface) MovieCatalogueClient {
 	return &movieCatalogueClient{cc}
+}
+
+func (c *movieCatalogueClient) GetMovie(ctx context.Context, in *MovieRequest, opts ...grpc.CallOption) (*MovieReply, error) {
+	out := new(MovieReply)
+	err := c.cc.Invoke(ctx, "/grpc.MovieCatalogue/GetMovie", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *movieCatalogueClient) GetMovies(ctx context.Context, in *MoviesRequest, opts ...grpc.CallOption) (*MoviesReply, error) {
@@ -42,7 +51,7 @@ func (c *movieCatalogueClient) GetMovies(ctx context.Context, in *MoviesRequest,
 // All implementations must embed UnimplementedMovieCatalogueServer
 // for forward compatibility
 type MovieCatalogueServer interface {
-	//rpc GetMovie (MovieRequest) returns (MovieReply) {}
+	GetMovie(context.Context, *MovieRequest) (*MovieReply, error)
 	GetMovies(context.Context, *MoviesRequest) (*MoviesReply, error)
 	mustEmbedUnimplementedMovieCatalogueServer()
 }
@@ -51,6 +60,9 @@ type MovieCatalogueServer interface {
 type UnimplementedMovieCatalogueServer struct {
 }
 
+func (UnimplementedMovieCatalogueServer) GetMovie(context.Context, *MovieRequest) (*MovieReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovie not implemented")
+}
 func (UnimplementedMovieCatalogueServer) GetMovies(context.Context, *MoviesRequest) (*MoviesReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMovies not implemented")
 }
@@ -65,6 +77,24 @@ type UnsafeMovieCatalogueServer interface {
 
 func RegisterMovieCatalogueServer(s grpc.ServiceRegistrar, srv MovieCatalogueServer) {
 	s.RegisterService(&_MovieCatalogue_serviceDesc, srv)
+}
+
+func _MovieCatalogue_GetMovie_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MovieRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovieCatalogueServer).GetMovie(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.MovieCatalogue/GetMovie",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovieCatalogueServer).GetMovie(ctx, req.(*MovieRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MovieCatalogue_GetMovies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -89,6 +119,10 @@ var _MovieCatalogue_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "grpc.MovieCatalogue",
 	HandlerType: (*MovieCatalogueServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetMovie",
+			Handler:    _MovieCatalogue_GetMovie_Handler,
+		},
 		{
 			MethodName: "GetMovies",
 			Handler:    _MovieCatalogue_GetMovies_Handler,
