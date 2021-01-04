@@ -32,7 +32,7 @@ func NewStorage() (*Storage, error) {
 // GetMovie runs a query to retrieve the movie with a specified ID
 func (s *Storage) GetMovie(ID int) (listing.Movie, error) {
 
-	row := s.db.QueryRow("SELECT * FROM movies WHERE id=?", ID)
+	row := s.db.QueryRow("SELECT * FROM movies WHERE id = $1", ID)
 	m := listing.Movie{}
 
 	err := row.Scan(&m.ID, &m.Title, &m.Description, &m.ProductionYear, &m.Genre, &m.Duration)
