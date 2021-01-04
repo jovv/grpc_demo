@@ -27,12 +27,12 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	handler := &rpc.Handler{
+	server := &rpc.Server{
 		Lister: lister,
 	}
 
 	srv := grpc.NewServer()
-	rpc.RegisterMovieCatalogueServer(srv, handler)
+	rpc.RegisterMovieCatalogueServer(srv, server)
 	// register reflection service on gRPC server, so we can list available
 	// services etc
 	reflection.Register(srv)

@@ -6,8 +6,8 @@ import (
 	"github.com/jovv/grpc_demo/go/grpc_demo/pkg/listing"
 )
 
-// Handler implements the proto MovieCatalogue service
-type Handler struct {
+// Server implements the proto MovieCatalogue service
+type Server struct {
 	Lister listing.Service
 	UnimplementedMovieCatalogueServer
 }
@@ -31,8 +31,8 @@ func moviesAdapter(ms []listing.Movie) []*Movie {
 	return movies
 }
 
-// getMovies returns an RPC MoviesReply with a list of all movies
-func (mc *Handler) getMovies(context.Context, *MoviesRequest) (*MoviesReply, error) {
+// GetMovies returns an RPC MoviesReply with a list of all movies
+func (mc *Server) GetMovies(context.Context, *MoviesRequest) (*MoviesReply, error) {
 	l, err := mc.Lister.GetMovies()
 	if err != nil {
 		return nil, err
@@ -43,8 +43,8 @@ func (mc *Handler) getMovies(context.Context, *MoviesRequest) (*MoviesReply, err
 	}, nil
 }
 
-// getMovie returns an RPC MovieReply with a movie for a specified ID
-func (mc *Handler) getMovie(c context.Context, mr *MovieRequest) (*MovieReply, error) {
+// GetMovie returns an RPC MovieReply with a movie for a specified ID
+func (mc *Server) GetMovie(c context.Context, mr *MovieRequest) (*MovieReply, error) {
 	m, err := mc.Lister.GetMovie(int(mr.ID))
 	if err != nil {
 		return nil, err
