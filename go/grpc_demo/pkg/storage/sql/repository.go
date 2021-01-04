@@ -2,6 +2,7 @@ package sql
 
 import (
 	"database/sql"
+	"log"
 
 	"github.com/jovv/grpc_demo/go/grpc_demo/pkg/listing"
 
@@ -26,6 +27,23 @@ func NewStorage() (*Storage, error) {
 
 	return &Storage{db: db}, nil
 
+}
+
+// GetMovie runs a query to retrieve the movie with a specified ID
+func (s *Storage) GetMovie(ID int) (listing.Movie, error) {
+
+	row := s.db.QueryRow("SELECT * FROM movies WHERE id=?", ID)
+	m := listing.Movie{}
+
+	err := row.Scan(&m.ID, &m.Title, &m.Description, &m.ProductionYear, &m.Genre, &m.Duration)
+	if err == sql.ErrNoRows {
+		log.Println("No movie found for id", ID)
+		return m, nil
+	}
+	if err != nil {
+		return m, err
+	}
+	return m, nil
 }
 
 // GetAllMovies runs a query to retrieve all movies
