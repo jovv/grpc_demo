@@ -1,20 +1,22 @@
 package listing
 
+import "errors"
+
+// ErrNotFound is used when a movie could not be found for a specified ID
+var ErrNotFound = errors.New("movie not found")
+
 // Repository provides access to the movie and castmembers storage
 type Repository interface {
-	// GetMovie returns the movie with given ID
-	//	GetMovie(int) (Movie, error)
+	// GetMovie returns the movie with specified ID
+	GetMovie(int) (Movie, error)
 	// GetAllMovies returns all movies saved in storage
 	GetAllMovies() ([]Movie, error)
-	// GetAllCastMembers returns a list of all cast members for a given movie ID
-	//	GetAllCastMembers(int) []CastMember
 }
 
 // Service provides beer and review listing operations
 type Service interface {
-	//	GetMovie(int) (Movie, error)
+	GetMovie(int) (Movie, error)
 	GetMovies() ([]Movie, error)
-	//	GetMovieCastMembers(int) []CastMember
 }
 
 type service struct {
@@ -29,4 +31,9 @@ func NewService(r Repository) Service {
 // GetMovies returns all movies
 func (svc *service) GetMovies() ([]Movie, error) {
 	return svc.r.GetAllMovies()
+}
+
+// GetMovie returns the movie with the specified ID
+func (svc *service) GetMovie(ID int) (Movie, error) {
+	return svc.r.GetMovie(ID)
 }
