@@ -16,7 +16,6 @@ func Handler(l listing.Service) http.Handler {
 
 	router.GET("/movies", getMovies(l))
 	router.GET("/movie/:id", getMovie(l))
-	// router.GET("/movie/:id/castmembers", getMovieCastMembers(l))
 
 	return router
 }
